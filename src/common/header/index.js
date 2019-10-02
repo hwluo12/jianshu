@@ -2,7 +2,7 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-02 15:33:31
+ * @LastEditTime: 2019-10-02 16:12:36
  * @LastEditors: hwluo
  */
 import React from 'react';
@@ -16,9 +16,40 @@ import {
     NavItem, 
     SearchWrapper, 
     NavSearch, 
-    Addition, 
+    Addition,
+    SearchInfo,
+    SearchInfoTitle,
+    SearchInfoSwitch,
+    SearchInfoItem,
+    SearchInfoList,
     Button 
 } from './style';
+
+const getListArea = (show) => {
+    if (show) {
+        return (
+            <SearchInfo>
+                <SearchInfoTitle>
+                    热门搜索
+                    <SearchInfoSwitch>
+                        换一批
+                    </SearchInfoSwitch>
+                    <SearchInfoList>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                    </SearchInfoList>
+                </SearchInfoTitle>
+            </SearchInfo>
+        )
+    } else {
+        return null;
+    }
+}
 
 const Header = (props) => {
     return (
@@ -46,6 +77,7 @@ const Header = (props) => {
                     <span 
                         className={props.focused ? 'focused iconfont' : 'iconfont'}                        
                     >&#xe624;</span>
+                    {getListArea(props.focused)}
                 </SearchWrapper>
             </Nav>
             <Addition>
