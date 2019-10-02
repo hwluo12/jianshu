@@ -2,13 +2,14 @@
  * @Description: index.js
  * @Author: hwluo
  * @Date: 2019-10-02 08:06:24
- * @LastEditTime: 2019-10-02 08:42:00
+ * @LastEditTime: 2019-10-02 10:12:16
  * @LastEditors: hwluo
  */
 import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
 import App from './App';
+import './statics/iconfont/iconfont.css';
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,

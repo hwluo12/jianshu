@@ -2,7 +2,7 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-02 09:46:39
+ * @LastEditTime: 2019-10-02 10:22:53
  * @LastEditors: hwluo
  */
 import React, { Component } from 'react';
@@ -44,6 +44,21 @@ const NavItem = styled.div`
     }
     &.active {
         color: #ea6f5a;
+    }
+`;
+const SearchWrapper = styled.div`
+    float: left;
+    position: relative;
+    .iconfont {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 15px;
+        text-align: center;
+        font-weight: bold;
     }
 `;
 const NavSearch = styled.input.attrs({
@@ -97,11 +112,19 @@ class Header extends Component {
                     <NavItem className="left active">首页</NavItem>
                     <NavItem className="left">下载App</NavItem>
                     <NavItem className="right">登陆</NavItem>
-                    <NavItem className="right">Aa</NavItem>
-                    <NavSearch />
+                    <NavItem className="right">
+                        <span className="iconfont">&#xe636;</span>
+                    </NavItem>
+                    <SearchWrapper>
+                        <NavSearch />
+                        <span className="iconfont">&#xe624;</span>
+                    </SearchWrapper>
                 </Nav>
                 <Addition>
-                    <Button className="writing">写文章</Button>
+                    <Button className="writing">
+                        <span className="iconfont">&#xe615;</span>
+                        写文章
+                    </Button>
                     <Button className="reg">注册</Button>
                 </Addition>
             </HeaderWrapper>
