@@ -2,7 +2,7 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-02 15:10:56
+ * @LastEditTime: 2019-10-02 15:19:07
  * @LastEditors: hwluo
  */
 import React from 'react';
@@ -61,7 +61,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        focused: state.header.focused
+        focused: state.header.get('focused')
     }
 }
 
