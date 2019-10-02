@@ -2,11 +2,12 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-02 10:22:53
+ * @LastEditTime: 2019-10-02 10:55:29
  * @LastEditors: hwluo
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { CSSTransition } from 'react-transition-group';
 import logoPic from '../../statics/logo.png';
 
 const HeaderWrapper = styled.div`
@@ -49,6 +50,18 @@ const NavItem = styled.div`
 const SearchWrapper = styled.div`
     float: left;
     position: relative;
+    .slide-enter {
+        transition: all 200ms ease-out;
+    }
+    .slide-enter-active {
+        width: 220px;
+    }
+    .slide-exit {
+        transition: all 200ms ease-out;
+    }
+    .slide-exit-active {
+        width: 160px;
+    }
     .iconfont {
         position: absolute;
         bottom: 5px;
@@ -59,6 +72,10 @@ const SearchWrapper = styled.div`
         border-radius: 15px;
         text-align: center;
         font-weight: bold;
+        &.focused {
+            color: #fff;
+            background: #777;
+        }
     }
 `;
 const NavSearch = styled.input.attrs({
@@ -66,7 +83,7 @@ const NavSearch = styled.input.attrs({
 })`
     width: 160px;
     height: 38px;
-    padding: 0 20px;
+    padding: 0 30px 0 20px;
     margin-left: 20px;
     margin-top: 9px;
     border: none;
@@ -74,8 +91,12 @@ const NavSearch = styled.input.attrs({
     border-radius: 19px;  
     font-size: 14px;
     background: #eee;
+    color: #666666;
     &::placeholder {
         color: #999;
+    }
+    &.focused {
+        width: 220px;
     }
 `;
 const Addition = styled.div`
@@ -104,6 +125,27 @@ const Button = styled.button`
 `;
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            focused: false
+        };
+        this.handleInputFocus = this.handleInputFocus.bind(this);
+        this.handleInputBlur = this.handleInputBlur.bind(this);
+    }
+
+    handleInputFocus() {
+        this.setState({
+            focused: true
+        });
+    }
+
+    handleInputBlur() {
+        this.setState({
+            focused: false
+        });
+    }
+
     render() {
         return (
             <HeaderWrapper>
@@ -116,8 +158,20 @@ class Header extends Component {
                         <span className="iconfont">&#xe636;</span>
                     </NavItem>
                     <SearchWrapper>
-                        <NavSearch />
-                        <span className="iconfont">&#xe624;</span>
+                        <CSSTransition
+                            in={this.state.focused}
+                            timeout={200}
+                            classNames="slide"
+                        >
+                            <NavSearch 
+                                className={this.state.focused ? 'focused' : ''}
+                                onFocus={this.handleInputFocus}
+                                onBlur={this.handleInputBlur}
+                            />
+                        </CSSTransition>
+                        <span 
+                            className={this.state.focused ? 'focused iconfont' : 'iconfont'}                        
+                        >&#xe624;</span>
                     </SearchWrapper>
                 </Nav>
                 <Addition>
