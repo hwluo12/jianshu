@@ -2,7 +2,7 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-04 19:05:59
+ * @LastEditTime: 2019-10-04 19:34:16
  * @LastEditors: hwluo
  */
 import React, { Component } from 'react';
@@ -48,8 +48,8 @@ class Header extends Component {
                 >
                     <SearchInfoTitle>
                         热门搜索
-                        <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>
-                            <span className="iconfont">&#xe852;</span>
+                        <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage, this.spinIcon)}>
+                            <span ref={(icon) => {this.spinIcon = icon}} className="iconfont spin">&#xe852;</span>
                             换一批
                         </SearchInfoSwitch>
                         <SearchInfoList>
@@ -63,7 +63,7 @@ class Header extends Component {
         }
     }
     render() {
-        const { focused, handleInputFocus, handleInputBlur } = this.props;
+        const { focused, handleInputFocus, handleInputBlur, list } = this.props;
         return (
             <HeaderWrapper>
                 <Logo href="/" />
@@ -82,7 +82,7 @@ class Header extends Component {
                         >
                             <NavSearch 
                                 className={focused ? 'focused' : ''}
-                                onFocus={handleInputFocus}
+                                onFocus={() => {handleInputFocus(list)}}
                                 onBlur={handleInputBlur}
                             />
                         </CSSTransition>
@@ -117,8 +117,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleInputFocus() {
-            dispatch(actionCreators.getList())
+        handleInputFocus(list) {
+            (list.size === 0)&&dispatch(actionCreators.getList())
             dispatch(actionCreators.searchFocus());
         },
         handleInputBlur() {
@@ -130,8 +130,16 @@ const mapDispatchToProps = (dispatch) => {
         handleMouseLeave() {
             dispatch(actionCreators.mouseLeave());
         },
-        handleChangePage(page, totalPage) {
-            if(page < totalPage) {
+        handleChangePage(page, totalPage, spin) {
+            let originAngle = spin.style.transform.replace(/[^0-9]/ig, '');
+            console.log(originAngle)
+            if (originAngle) {
+                originAngle = parseInt(originAngle, 10);
+            } else {
+                originAngle = 0;
+            }
+            spin.style.transform = 'rotate(' + (originAngle + 360) + 'deg)';
+            if(page < totalPage) {  
                 dispatch(actionCreators.changePage(page + 1));
             }else{
                 dispatch(actionCreators.changePage(1));
