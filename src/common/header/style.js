@@ -2,7 +2,7 @@
  * @Description: header style
  * @Author: hwluo
  * @Date: 2019-10-02 13:43:03
- * @LastEditTime: 2019-10-02 16:13:54
+ * @LastEditTime: 2019-10-04 19:02:59
  * @LastEditors: hwluo
  */
 import styled from 'styled-components';
@@ -48,7 +48,7 @@ export const NavItem = styled.div`
 export const SearchWrapper = styled.div`
     float: left;
     position: relative;
-    .iconfont {
+    .zoom {
         position: absolute;
         bottom: 5px;
         right: 5px;

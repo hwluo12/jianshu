@@ -2,7 +2,7 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-04 17:42:16
+ * @LastEditTime: 2019-10-04 19:05:59
  * @LastEditors: hwluo
  */
 import React, { Component } from 'react';
@@ -49,6 +49,7 @@ class Header extends Component {
                     <SearchInfoTitle>
                         热门搜索
                         <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>
+                            <span className="iconfont">&#xe852;</span>
                             换一批
                         </SearchInfoSwitch>
                         <SearchInfoList>
@@ -86,7 +87,7 @@ class Header extends Component {
                             />
                         </CSSTransition>
                         <span 
-                            className={focused ? 'focused iconfont' : 'iconfont'}                        
+                            className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}                        
                         >&#xe624;</span>
                         {this.getListArea()}
                     </SearchWrapper>
