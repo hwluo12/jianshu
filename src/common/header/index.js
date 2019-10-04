@@ -2,7 +2,7 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-04 16:49:17
+ * @LastEditTime: 2019-10-04 17:42:16
  * @LastEditors: hwluo
  */
 import React, { Component } from 'react';
@@ -28,21 +28,31 @@ import {
 
 class Header extends Component {
     getListArea() {
-        const {focused, list} = this.props;
-        if (focused) {
+        const {focused, list, page, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, handleChangePage} = this.props;
+        const newList = list.toJS();
+        const pageList = [];
+
+        if(newList.length) {
+            for(let i = (page - 1) * 10; i < page * 10; i++) {
+                pageList.push(
+                    <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+                )
+            }
+        }
+
+        if (focused || mouseIn) {
             return (
-                <SearchInfo>
+                <SearchInfo 
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <SearchInfoTitle>
                         热门搜索
-                        <SearchInfoSwitch>
+                        <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>
                             换一批
                         </SearchInfoSwitch>
                         <SearchInfoList>
-                            {
-                                list.map((item) => {
-                                    return <SearchInfoItem key={item}>{item}</SearchInfoItem>
-                                })
-                            }
+                            { pageList }
                         </SearchInfoList>
                     </SearchInfoTitle>
                 </SearchInfo>
@@ -97,7 +107,10 @@ const mapStateToProps = (state) => {
     return {
         // focused: state.get('header').get('focused') // state.getIn(['header', 'focused'])
         focused: state.getIn(['header', 'focused']),
-        list: state.getIn(['header', 'list'])
+        list: state.getIn(['header', 'list']),
+        page: state.getIn(['header', 'page']),
+        totalPage: state.getIn(['header', 'totalPage']),
+        mouseIn: state.getIn(['header', 'mouseIn'])
     }
 }
 
@@ -109,6 +122,19 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleInputBlur() {
             dispatch(actionCreators.searchBlur());
+        },
+        handleMouseEnter() {
+            dispatch(actionCreators.mouseEnter());
+        },
+        handleMouseLeave() {
+            dispatch(actionCreators.mouseLeave());
+        },
+        handleChangePage(page, totalPage) {
+            if(page < totalPage) {
+                dispatch(actionCreators.changePage(page + 1));
+            }else{
+                dispatch(actionCreators.changePage(1));
+            }
         }
     }
 }

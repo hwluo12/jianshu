@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hwluo
  * @Date: 2019-10-02 14:41:00
- * @LastEditTime: 2019-10-04 16:52:02
+ * @LastEditTime: 2019-10-04 17:44:13
  * @LastEditors: hwluo
  */
 import * as constants from './constants';
@@ -10,7 +10,10 @@ import { fromJS } from 'immutable';
 
 const defaultState = fromJS({
     focused: false,
-    list: []
+    mouseIn: false,
+    list: [],
+    page: 1,
+    totalPage: 1
 });
 
 export default (state = defaultState, action) => {
@@ -20,7 +23,17 @@ export default (state = defaultState, action) => {
         case constants.SEARCH_BLUR:
             return state.set('focused', false);
         case constants.CHANGE_LIST:
-            return state.set('list', action.data);
+            return state.merge({
+                list: action.data,
+                totalPage: action.totalPage
+            });
+            // return state.set('list', action.data).set('totalPage', action.totalPage);
+        case constants.MOUSE_ENTER:
+            return state.set('mouseIn', true);
+        case constants.MOUSE_LEAVE:
+            return state.set('mouseIn', false);
+        case constants.CHANGE_PAGE:
+            return state.set('page', action.page)
         default:
             return state;
     }
