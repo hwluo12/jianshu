@@ -2,16 +2,19 @@
  * @Description: index.js
  * @Author: hwluo
  * @Date: 2019-10-02 08:06:24
- * @LastEditTime: 2019-10-02 13:37:46
+ * @LastEditTime: 2019-10-04 19:57:40
  * @LastEditors: hwluo
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
 import './statics/iconfont/iconfont.css';
+import Home from './pages/home';
+import Detail from './pages/detail';
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -62,6 +65,10 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = (
     <Provider store={store}>
         <App />
+        <BrowserRouter>
+            <Route path="/" exact component={Home}></Route>
+            <Route path="/detail" exact component={Detail}></Route>
+        </BrowserRouter>
         <GlobalStyle />
     </Provider>
 )
