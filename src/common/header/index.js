@@ -2,11 +2,12 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-04 19:34:16
+ * @LastEditTime: 2019-10-06 12:02:47
  * @LastEditors: hwluo
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { actionCreators } from './store';
 import { 
@@ -66,7 +67,9 @@ class Header extends Component {
         const { focused, handleInputFocus, handleInputBlur, list } = this.props;
         return (
             <HeaderWrapper>
-                <Logo href="/" />
+                <Link to='/'>
+                    <Logo />
+                </Link>
                 <Nav>
                     <NavItem className="left active">首页</NavItem>
                     <NavItem className="left">下载App</NavItem>
@@ -132,7 +135,6 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleChangePage(page, totalPage, spin) {
             let originAngle = spin.style.transform.replace(/[^0-9]/ig, '');
-            console.log(originAngle)
             if (originAngle) {
                 originAngle = parseInt(originAngle, 10);
             } else {

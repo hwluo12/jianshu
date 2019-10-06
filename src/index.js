@@ -2,7 +2,7 @@
  * @Description: index.js
  * @Author: hwluo
  * @Date: 2019-10-02 08:06:24
- * @LastEditTime: 2019-10-04 19:57:40
+ * @LastEditTime: 2019-10-06 12:05:00
  * @LastEditors: hwluo
  */
 import React from 'react';
@@ -64,8 +64,8 @@ const GlobalStyle = createGlobalStyle`
 
 const AppContainer = (
     <Provider store={store}>
-        <App />
         <BrowserRouter>
+            <App />
             <Route path="/" exact component={Home}></Route>
             <Route path="/detail" exact component={Detail}></Route>
         </BrowserRouter>
