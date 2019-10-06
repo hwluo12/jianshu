@@ -2,7 +2,7 @@
  * @Description: header
  * @Author: hwluo
  * @Date: 2019-10-02 08:45:40
- * @LastEditTime: 2019-10-06 15:24:16
+ * @LastEditTime: 2019-10-06 15:36:07
  * @LastEditors: hwluo
  */
 import React, { Component } from 'react';
@@ -103,10 +103,12 @@ class Header extends Component {
                     </SearchWrapper>
                 </Nav>
                 <Addition>
-                    <Button className="writing">
-                        <span className="iconfont">&#xe615;</span>
-                        写文章
-                    </Button>
+                    <Link to='/write'>
+                        <Button className="writing">
+                            <span className="iconfont">&#xe615;</span>
+                            写文章
+                        </Button>
+                    </Link>
                     <Button className="reg">注册</Button>
                 </Addition>
             </HeaderWrapper>

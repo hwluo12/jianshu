@@ -2,7 +2,7 @@
  * @Description: index.js
  * @Author: hwluo
  * @Date: 2019-10-02 08:06:24
- * @LastEditTime: 2019-10-06 13:41:57
+ * @LastEditTime: 2019-10-06 15:41:09
  * @LastEditors: hwluo
  */
 import React from 'react';
@@ -16,6 +16,7 @@ import './statics/iconfont/iconfont.css';
 import Home from './pages/home';
 import Detail from './pages/detail';
 import Login from './pages/login';
+import Write from './pages/write';
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -69,6 +70,7 @@ const AppContainer = (
             <App />
             <Route path="/" exact component={Home}></Route>
             <Route path="/login" exact component={Login}></Route>
+            <Route path="/write" exact component={Write}></Route>
             <Route path="/detail/:id" exact component={Detail}></Route>
         </BrowserRouter>
         <GlobalStyle />
