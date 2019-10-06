@@ -2,7 +2,7 @@
  * @Description: index.js
  * @Author: hwluo
  * @Date: 2019-10-02 08:06:24
- * @LastEditTime: 2019-10-06 12:05:00
+ * @LastEditTime: 2019-10-06 13:29:40
  * @LastEditors: hwluo
  */
 import React from 'react';
@@ -67,7 +67,7 @@ const AppContainer = (
         <BrowserRouter>
             <App />
             <Route path="/" exact component={Home}></Route>
-            <Route path="/detail" exact component={Detail}></Route>
+            <Route path="/detail/:id" exact component={Detail}></Route>
         </BrowserRouter>
         <GlobalStyle />
     </Provider>

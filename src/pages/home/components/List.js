@@ -2,7 +2,7 @@
  * @Description: topic
  * @Author: hwluo
  * @Date: 2019-10-04 20:10:20
- * @LastEditTime: 2019-10-06 11:59:59
+ * @LastEditTime: 2019-10-06 13:28:13
  * @LastEditors: hwluo
  */
 import React, { PureComponent } from 'react';
@@ -18,7 +18,7 @@ class Topic extends PureComponent {
             <div>
                 {
                     list.map((item) => (
-                        <Link key={item.get('id')} to="/detail">
+                        <Link key={item.get('id')} to={"/detail/"+item.get('id')}>
                             <ListItem>
                                 <img 
                                     className='pic'
