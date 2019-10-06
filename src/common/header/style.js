@@ -2,7 +2,7 @@
  * @Description: header style
  * @Author: hwluo
  * @Date: 2019-10-02 13:43:03
- * @LastEditTime: 2019-10-06 12:01:48
+ * @LastEditTime: 2019-10-06 13:47:31
  * @LastEditors: hwluo
  */
 import styled from 'styled-components';
@@ -99,6 +99,7 @@ export const NavSearch = styled.input.attrs({
 `;
 export const SearchInfo = styled.div`
     position: absolute;
+    z-index: 1;
     left: 0;
     top: 56px;
     width: 270px;

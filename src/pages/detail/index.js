@@ -2,10 +2,10 @@
  * @Description: detail
  * @Author: hwluo
  * @Date: 2019-10-04 19:56:04
- * @LastEditTime: 2019-10-06 13:32:04
+ * @LastEditTime: 2019-10-06 13:40:02
  * @LastEditors: hwluo
  */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import {
     DetailWrapper,
@@ -14,7 +14,7 @@ import {
 } from './style';
 import { actionCreators } from './store';
 
-class Detail extends Component {
+class Detail extends PureComponent {
     render() {
         const { title, content } = this.props;
         return (
